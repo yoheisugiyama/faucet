@@ -6,12 +6,15 @@ import Web3 from "web3";
 // by importing this, you will be able to write the code about the provider in a single line (much simpler)
 import detectEthereumProvider from '@metamask/detect-provider';
 
+import { loadContract } from './utils/load-contract';
+
 
 function App() {
 
   const[web3Api, setWeb3Api] =useState({
     provider: null,
-    web3: null
+    web3: null,
+    contract: null
   })
 
   const [account, setAccount] = useState(null)
@@ -26,12 +29,15 @@ function App() {
       // and send messages and transactions
 
       const provider = await detectEthereumProvider()
+      const contract = await loadContract("Faucet", provider)
 
+      debugger
       if(provider) {
         
         setWeb3Api({
           web3: new Web3(provider),
-          provider
+          provider,
+          contract
         })
 
       } else{
