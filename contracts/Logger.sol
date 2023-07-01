@@ -13,7 +13,7 @@ abstract contract Logger {
     // functions without implementation should include "virtual"
     function emitLog() public pure virtual returns (bytes32);
 
-    function test3() internal pure returns (uint) {
+    function test3() public pure returns (uint) {
         return 100;
     }
 }
